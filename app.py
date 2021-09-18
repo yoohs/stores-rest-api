@@ -15,7 +15,7 @@ app = Flask(__name__)
 app.config['DEBUG'] = True
 
 # If DATABASE_URL is not available, use 'sqlite:///data.db' locally.
-uri = os.getenv("DATABASE_URL")
+uri = os.environ.get('DATABASE_URL', 'sqlite:///data.db')
 if uri.startswith("postgres://"):
     uri = uri.replace("postgres://", "postgresql://", 1)
 app.config['SQLALCHEMY_DATABASE_URI'] = uri
